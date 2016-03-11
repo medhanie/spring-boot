@@ -1,4 +1,4 @@
-package com.medhanie.github.spboot.model;
+package com.github.medhanie.spboot.model;
 
 import java.math.BigInteger;
 
