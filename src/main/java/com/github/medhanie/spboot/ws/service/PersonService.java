@@ -5,7 +5,7 @@ import java.util.Collection;
 
 import com.github.medhanie.spboot.model.Person;
 
-public interface personInterface {
+public interface PersonService {
 
 	Collection<Person> findAll();
 
@@ -16,4 +16,6 @@ public interface personInterface {
 	Person create(Person person);
 
 	void delete(Long id);
+
+	void evictCache();
 }

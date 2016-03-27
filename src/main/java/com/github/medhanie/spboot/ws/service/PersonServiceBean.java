@@ -1,18 +1,21 @@
 package com.github.medhanie.spboot.ws.service;
 
-import java.math.BigInteger;
 import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
 
 import com.github.medhanie.spboot.ws.repository.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import com.github.medhanie.spboot.model.Person;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
-public class PersonServiceBean implements personInterface {
+@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+public class PersonServiceBean implements PersonService {
 
 	@Autowired
 	private PersonRepository personRepository;
@@ -24,12 +27,15 @@ public class PersonServiceBean implements personInterface {
 	}
 
 	@Override
+	@Cacheable(value = "persons", key="#id")
 	public Person findOne(Long id) {
 		Person existingPerson = personRepository.findOne(id);
 		return existingPerson;
 	}
 
 	@Override
+	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
+	@CachePut(value = "persons", key="#person.id")
 	public Person update(Person person) {
 		Person personDatabase = findOne(person.getId());
 		if(personDatabase == null){
@@ -40,11 +46,14 @@ public class PersonServiceBean implements personInterface {
 	}
 
 	@Override
+	@CacheEvict(value="persons", key="#id")
 	public void delete(Long id) {
 		personRepository.delete(id);
 	}
 
 	@Override
+	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
+	@CachePut(value = "persons", key="#result.id")
 	public Person create(Person person) {
 		if(person.getId() != null){
 			//not possible to create a person without Id
@@ -54,4 +63,9 @@ public class PersonServiceBean implements personInterface {
 		return personSaved;
 	}
 
+	@Override
+	@CacheEvict(value = "persons", allEntries = true)
+	public void evictCache(){
+
+	}
 }
