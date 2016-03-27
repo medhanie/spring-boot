@@ -1,5 +1,8 @@
 /target/
+/.idea/
 
 .project
 .settings
 .classpath
+.idea
+spboot-srvs.iml

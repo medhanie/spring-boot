@@ -31,7 +31,7 @@ public class PersonController {
 	}
 
 	@RequestMapping(value = "/api/persons/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Person> getPerson(@PathVariable("id") BigInteger id) {
+	public ResponseEntity<Person> getPerson(@PathVariable("id") Long id) {
 		Person person = personService.findOne(id);
 		if (person == null) {
 			return new ResponseEntity<Person>(HttpStatus.NOT_FOUND);
@@ -55,7 +55,7 @@ public class PersonController {
 	}
 
 	@RequestMapping(value = "/api/persons/{id}", method = RequestMethod.DELETE, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Person> deletePerson(@PathVariable("id") BigInteger id, @RequestBody Person person) {
+	public ResponseEntity<Person> deletePerson(@PathVariable("id") Long id, @RequestBody Person person) {
 		personService.delete(id);
 		return new ResponseEntity<Person>(person, HttpStatus.NO_CONTENT);
 	}

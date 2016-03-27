@@ -1,29 +1,33 @@
 package com.github.medhanie.spboot.model;
 
-import java.math.BigInteger;
+import javax.persistence.*;
 
+@Entity
 public class Person {
 
-	private BigInteger id;
-	private String firsName;
+	@Id
+	@GeneratedValue
+	private Long id;
+	private String firstName;
 	private String middleName;
 	private String lastName;
-	private java.sql.Date dateOfBirth;
+	@Temporal(TemporalType.DATE)
+	private java.util.Date dateOfBirth;
 
-	public BigInteger getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(BigInteger id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
-	public String getFirsName() {
-		return firsName;
+	public String getFirstName() {
+		return firstName;
 	}
 
-	public void setFirsName(String firsName) {
-		this.firsName = firsName;
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
 	}
 
 	public String getMiddleName() {
@@ -42,7 +46,7 @@ public class Person {
 		this.lastName = lastName;
 	}
 
-	public java.sql.Date getDateOfBirth() {
+	public java.util.Date getDateOfBirth() {
 		return dateOfBirth;
 	}
 

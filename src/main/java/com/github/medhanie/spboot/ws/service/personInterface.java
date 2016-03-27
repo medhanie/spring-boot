@@ -9,11 +9,11 @@ public interface personInterface {
 
 	Collection<Person> findAll();
 
-	Person findOne(BigInteger id);
+	Person findOne(Long id);
 
 	Person update(Person person);
 
 	Person create(Person person);
 
-	void delete(BigInteger id);
+	void delete(Long id);
 }
