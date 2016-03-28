@@ -6,6 +6,7 @@ import com.github.medhanie.spboot.ws.service.PersonService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Profile;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
@@ -15,13 +16,14 @@ import java.util.Collection;
  * Created by Medhanie on 3/27/2016.
  */
 @Component
+@Profile("batch")
 public class PersonBatchBean {
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
     private PersonService personService;
 
-    @Scheduled(cron = "0,30 * * * * *" )
+    @Scheduled(cron = "${batch.greeting.cron}" )
     public void cronJob(){
         logger.info("> cronJob");
 
@@ -30,7 +32,7 @@ public class PersonBatchBean {
         logger.info("There are {} greetings in the data store.", persons.size());
     }
 
-    @Scheduled(initialDelay = 5000, fixedDelay = 15000)
+    @Scheduled(initialDelayString = "${batch.person.initialdelay}", fixedDelayString = "${batch.person.fixedrate}")
     public void fixedRateJobWithInitialDelay(){
         logger.info("> fixedRateJobWithInitialDelay");
 
