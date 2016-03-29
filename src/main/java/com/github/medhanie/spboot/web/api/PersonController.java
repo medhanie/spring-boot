@@ -79,7 +79,7 @@ public class PersonController {
 			if(waitForAsyncResult){
 				Future<Boolean> asyncResponse = emailService.sendAsyncWithResult(person);
 				boolean emailSent = asyncResponse.get();
-				logger.info(" - greeting eamil sent? {}", emailSent);
+				logger.info(" - person mail sent? {}", emailSent);
 			}else{
 				emailService.sendAsync(person);
 			}

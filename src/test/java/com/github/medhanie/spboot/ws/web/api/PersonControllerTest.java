@@ -39,23 +39,6 @@ public class PersonControllerTest  extends AbstractControllerTest{
         Assert.assertTrue("failure - expected HTTP response body to have a value", ! content.trim().isEmpty());
     }
 
-    @Test
-    public void testDeletePerson() throws Exception {
-
-        String uri = "/api/persons/{id}";
-        Long id = 1L;
-
-        MvcResult result = mvc.perform(MockMvcRequestBuilders.delete(uri, id)).andReturn();
-
-        String content = result.getResponse().getContentAsString();
-        int status = result.getResponse().getStatus();
-
-        Assert.assertEquals("failure - expected HTTP status 204", 204, status);
-        Assert.assertTrue("failure - expected HTTP response body to be empty", content.trim().isEmpty());
-
-        Person deletedPerson = personService.findOne(id);
-        Assert.assertNull("failure - expected person to be null", deletedPerson);
-    }
 
     @Test
     public void testCreatePerson() throws Exception{
@@ -130,6 +113,24 @@ public class PersonControllerTest  extends AbstractControllerTest{
         int status = result.getResponse().getStatus();
 
         Assert.assertEquals("failure - expected HTTP status 404", 404, status);
-        Assert.assertTrue("failure - expected HTTP response body to be empty", ! content.trim().isEmpty());
+        Assert.assertTrue("failure - expected HTTP response body to be empty", content.trim().isEmpty());
+    }
+
+    @Test
+    public void testDeletePerson() throws Exception {
+
+        String uri = "/api/persons/{id}";
+        Long id = 1L;
+
+        MvcResult result = mvc.perform(MockMvcRequestBuilders.delete(uri, id)).andReturn();
+
+        String content = result.getResponse().getContentAsString();
+        int status = result.getResponse().getStatus();
+
+        Assert.assertEquals("failure - expected HTTP status 204", 204, status);
+        Assert.assertTrue("failure - expected HTTP response body to be empty", content.trim().isEmpty());
+
+        Person deletedPerson = personService.findOne(id);
+        Assert.assertNull("failure - expected person to be null", deletedPerson);
     }
 }

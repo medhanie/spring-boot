@@ -87,8 +87,8 @@ public class PersonServiceTest  extends AbstractTest {
 
         Person person = new Person();
         person.setId(Long.MAX_VALUE);
-        person.setFirstName("Medhanie");
-        person.setLastName("Mihreteab");
+        person.setFirstName("Med");
+        person.setLastName("Eris");
 
         try{
             service.create(person);
@@ -124,7 +124,7 @@ public class PersonServiceTest  extends AbstractTest {
         Person person = new Person();
         person.setId(Long.MAX_VALUE);
         person.setFirstName("Yishak");
-        person.setLastName("Belay");
+        person.setLastName("Issac");
 
         try{
             service.update(person);
