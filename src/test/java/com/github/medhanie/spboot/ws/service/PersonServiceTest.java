@@ -1,6 +1,7 @@
-package com.github.medhanie.spboot.ws;
+package com.github.medhanie.spboot.ws.service;
 
 import com.github.medhanie.spboot.model.Person;
+import com.github.medhanie.spboot.ws.AbstractTest;
 import com.github.medhanie.spboot.ws.service.PersonService;
 import org.junit.After;
 import org.junit.Assert;
@@ -17,7 +18,7 @@ import java.util.Collection;
  * Created by Medhanie on 3/27/2016.
  */
 @Transactional
-public class PersonServiceTest  extends AbstractTest{
+public class PersonServiceTest  extends AbstractTest {
 
     @Autowired
     private PersonService service;
