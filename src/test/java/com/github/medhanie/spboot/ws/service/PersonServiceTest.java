@@ -132,7 +132,7 @@ public class PersonServiceTest  extends AbstractTest {
             exception = nre;
         }
         Assert.assertNotNull("failure - expected exception", exception);
-        Assert.assertTrue("failure - expected NoResusltException", exception instanceof NoResultException);
+        Assert.assertTrue("failure - expected NoResultException", exception instanceof NoResultException);
     }
 
     @Test

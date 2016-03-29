@@ -26,8 +26,6 @@ import java.io.IOException;
 /**
  * Created by Medhanie on 3/28/2016.
  */
-@RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = Application.class)
 @WebAppConfiguration
 public abstract class AbstractControllerTest extends AbstractTest {
 
