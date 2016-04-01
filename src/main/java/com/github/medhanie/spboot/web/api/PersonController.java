@@ -16,7 +16,7 @@ import com.github.medhanie.spboot.model.Person;
 import com.github.medhanie.spboot.ws.service.PersonService;
 
 @RestController
-public class PersonController {
+public class PersonController extends BaseController {
 
 	Logger logger = org.slf4j.LoggerFactory.getLogger(this.getClass());
 

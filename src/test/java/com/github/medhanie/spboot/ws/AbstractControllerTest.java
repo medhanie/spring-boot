@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.medhanie.spboot.Application;
 import com.github.medhanie.spboot.model.Person;
+import com.github.medhanie.spboot.web.api.BaseController;
 import com.github.medhanie.spboot.ws.service.PersonService;
 import org.junit.Assert;
 import org.junit.Test;
@@ -46,6 +47,10 @@ public abstract class AbstractControllerTest extends AbstractTest {
     protected <T> T mapFromJson(String json, Class<T> clazz) throws JsonParseException, JsonMappingException, IOException{
         ObjectMapper mapper = new ObjectMapper();
         return mapper.readValue(json, clazz);
+    }
+
+    protected void setUp(BaseController controller){
+        mvc = MockMvcBuilders.standaloneSetup(controller).build();
     }
 
 }
